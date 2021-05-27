@@ -34,6 +34,18 @@ import ss.serven.rduwan.airtunesandroid.network.raop.RaopRtsPipelineFactory;
  * Created by rduwan on 17/6/29.
  */
 
+import android.os.Build;
+
+class DeviceUtils {
+    public static String getShortName() {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        if (model.startsWith(manufacturer)) {
+            model = model.substring(manufacturer.length());
+        }
+        return manufacturer.substring(0, 5) + " " + model;
+    }
+}
 public class AirTunesRunnable implements Runnable {
 
     /**
@@ -138,7 +150,8 @@ public class AirTunesRunnable implements Runnable {
     private void sendMulitCastToiOS() {
         //get Network details
         NetworkUtils networkUtils = NetworkUtils.getInstance();
-        String hostName = "RDuwan-AirTunes";
+        String hostName = "AirT-" + DeviceUtils.getShortName();
+        // 对原项目定义的名字缩短并加上设备名
         networkUtils.setHostName(hostName);
         String hardwareAddressString = networkUtils.getHardwareAddressString();
         try {

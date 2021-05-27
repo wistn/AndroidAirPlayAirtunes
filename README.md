@@ -38,3 +38,5 @@ build阶段 1 如果报错 Could not determine java version from xxx (The projec
 
 重新命令行打包调试版apk ./gradlew assembleDebug #已包含 打包工程 ./gradlew build -x test
 安装到真机 adb install -r ./app/build/outputs/apk/app-debug.apk
+
+根据fork的人（我）需求，在不同安卓设备要显示不同的Airplay/Airtunes接收端名字，所以修改 AndroidAirPlayAirtunes/app/src/main/java/ss/serven/rduwan/airtunesandroid/AirTunesRunnable.java
